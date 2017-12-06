@@ -1,0 +1,28 @@
+version: "3"
+services:
+ 
+  db:
+    image: mysql
+    container_name: spgroup_db
+    ports:
+      - 3306:3306
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=friend_management
+    - MYSQL_USER=spgroup
+    - MYSQL_PASSWORD=password
+  app:
+    image: spgroup_app_img
+    container_name: spgroup_app
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+    - DATABASE_HOST=spgroup_db
+    - DATABASE_USER=spgroup
+    - DATABASE_PASSWORD=password
+    - DATABASE_NAME=friend_management
+    - DATABASE_PORT=3306
