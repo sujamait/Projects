@@ -18,9 +18,9 @@ Exception handling, Validations and Logging is also implemented in the applicati
 
 4. **Getting Started:**
 
- These instructions will get you a copy of the project up and running  on your local machine or cloud for development and testing purposes. See notes below on how to deploy the project.
+     These instructions will get you a copy of the project up and running  on your local machine or cloud for development and   testing purposes. See notes below on how to deploy the project.
 
-   4.1.    Use terminal,
+   4.1.  Use terminal,
                            
 
          cd [to project directory]
@@ -29,52 +29,56 @@ Exception handling, Validations and Logging is also implemented in the applicati
 
          mvn clean package docker:build
 
-    Please note the public shared image can be pulled from public repository   as well,
+      Please note the public shared image can be pulled from public repository   as well,
     
  
 
         docker pull sujamait/spgroup:latest
 
- 4.3. Tag the docker image to docker cloud repository after login from    terminal.
+   4.3.  Tag the docker image to docker cloud repository after login from    terminal.
 
         docker tag [Docker Image] [username]/[repository] 
 
-    For Example,
+      For Example,
 
  
 
-        docker tag spgroup_app_img:latest sujamait/spgroup
+          docker tag spgroup_app_img:latest sujamait/spgroup
 
  
 
- 4.4.     Run below command to Build, (re)create, start, and attache to  containers for a service.
+    4.4.  Run below command to Build, (re)create, start, and attache to  containers for a service.
 
         docker-compose up
 
-  4.5.  Verify the running process with 
+    4.5.  Verify the running process with 
 
           
 
         docker ps
 
-    If everything is ok, click below URL to test services.
+   
+     If everything is ok, click below URL to test services.
      http://hostname:8080/swagger-ui.html
      Swagger is used for Documentation, and  changes in API are reflected     automatically.
 
 
 
-5. To build and Run the application locally and Execute Junits.
-    5.1.  Setup the database locally.
-   5.2. Run command, 
+ 5.   To build and Run the application locally and Execute Junits.
+   
+     5.1.  Setup the database locally.
+     5.2.  Run command, 
    
 
         mvn install
-    5.3. Execute the generated spgroup-0.0.1-SNAPSHOT.jar using command,
+    
+     5.3.  Execute the generated spgroup-0.0.1-SNAPSHOT.jar using command,
  
 
         java -jar spgroup-0.0.1-SNAPSHOT.jar
 
-   5.4. Set the maven maven.test.skip parameter to false to run junits.
+    
+     5.4.  Set the maven maven.test.skip parameter to false to run junits.
 
 
 
