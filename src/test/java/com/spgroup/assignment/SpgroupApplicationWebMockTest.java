@@ -3,6 +3,9 @@ package com.spgroup.assignment;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spgroup.assignment.controller.FriendManagementController;
 import com.spgroup.assignment.dto.FriendRequest;
+import com.spgroup.assignment.dto.Response;
 import com.spgroup.assignment.repository.UsersRelationshipRepository;
 import com.spgroup.assignment.repository.UsersRepository;
 import com.spgroup.assignment.service.FriendManagementServiceImpl;
@@ -74,11 +78,14 @@ public class SpgroupApplicationWebMockTest {
     public void SuccessTrueShouldReturnMessageFromService() throws Exception {
     	
     	FriendRequest freq = new FriendRequest();
-    	freq.setFriends(Arrays.asList("Test@gmail.com","Test@spgroup.com"));
+    	freq.setFriends(Arrays.asList("Hum@gmail.com","Charles@spgroup.com"));
     	
-    	
-    	 given(friendManagementService.connectFriends(Arrays.asList("Test@gmail.com","Test@spgroup.com")))
-    	 .willReturn(true);
+    	Map<String,Response> responseMp = new HashMap<String,Response>();
+    	Response response= new Response();
+    	response.setSuccess(true);
+    	responseMp.put("response", response);
+    	 given(friendManagementService.connectFriends(Arrays.asList("Hum@gmail.com","Charles@spgroup.com")))
+    	 .willReturn(responseMp);
 
     	
     	 this.mockMvc.perform(put("/connect/friends/")

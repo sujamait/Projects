@@ -1,15 +1,15 @@
 package com.spgroup.assignment.repository;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.spgroup.assignment.exceptionhandling.FriendManagementApplicationException;
 import com.spgroup.assignment.model.RelationKey;
 import com.spgroup.assignment.model.UsersRelationship;
 
 @Repository
 public interface UsersRelationshipRepository extends CrudRepository<UsersRelationship,RelationKey>{
-
-	UsersRelationship findByRelatingUserOrRelatedUser(Long relatingUserId, Long relatedUserId);
-	UsersRelationship findByUserId(Long relatingUserId,Long relatedUserId);
+	List<UsersRelationship> findByRelatingUserIdOrRelatedUserIdAndRelationType(Long relatingUserId, Long relatedUserId,String relationType);
+	List<UsersRelationship> findByUserId(Long relatingUserId,Long relatedUserId,String relationType);
+	UsersRelationship findSubscriberByUserId(Long relatingUserId,Long relatedUserId,String relationType);
+	List<UsersRelationship> findByRelatedUserIdAndRelationTypeNot(Long userId, String relationType);
 }

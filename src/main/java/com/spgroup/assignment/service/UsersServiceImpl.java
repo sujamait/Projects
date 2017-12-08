@@ -26,20 +26,19 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public List<Long> add(List<String> emailIds) throws FriendManagementApplicationException{
-
+		 logger.info("Add Users");
 		 List<Long> userIds = new ArrayList<Long>();
 		 if( null != emailIds){
 			  emailIds.stream().forEach((emailId) ->
 			  {
-				  Users user = usersRepository.findUserByEmailId(emailId);
+				  Users user = usersRepository.findUserByEmailId(emailId.toLowerCase());
 				  if(user == null){
-					  user = new Users(emailId);
+					  user = new Users(emailId.toLowerCase());
 					  user.setCreatedDt(new java.sql.Timestamp(System.currentTimeMillis()));
 					  user.setUpdatedDt(new java.sql.Timestamp(System.currentTimeMillis()));
 					  usersRepository.save(user);
 				  }
 				  userIds.add(user.getUserId());
-				 
 			  });
 		 }
 		

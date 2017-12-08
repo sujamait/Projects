@@ -14,7 +14,7 @@ CREATE TABLE users_relationship (
   type varchar(10) not null,
   created_dt DATETIME,
   updated_dt DATETIME,
-  PRIMARY KEY (relating_user_id, related_user_id)
+  PRIMARY KEY (relating_user_id, related_user_id,type)
 );
 
 CREATE UNIQUE INDEX email_id_idx

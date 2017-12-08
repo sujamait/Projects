@@ -7,24 +7,28 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity(name="users_relationship")
 @IdClass(RelationKey.class)
-@NamedQuery(name = "UsersRelationship.findByUserId",
-query = "select u from users_relationship u where ((u.relatingUserId = ?1 and u.relatedUserId = ?2) or (u.relatingUserId = ?2 and u.relatedUserId = ?1))")
+@NamedQueries({
+	 @NamedQuery(name = "UsersRelationship.findByUserId",
+			query = "select u from users_relationship u where (((u.relatingUserId = ?1 and u.relatedUserId = ?2) or (u.relatingUserId = ?2 and u.relatedUserId = ?1)) and (u.relationType = ?3 or u.relationType = 'BLOCK'))"),
+	 @NamedQuery(name = "UsersRelationship.findSubscriberByUserId",
+		    query = "select u from users_relationship u where ((u.relatingUserId = ?1 and u.relatedUserId = ?2) and (u.relationType = 'BLOCK' or u.relationType = ?3))")
+})
 public class UsersRelationship extends BaseDomain {
 
  	
  @Transient	
  private static final long serialVersionUID = 1L;
 
- @Id private @Column(name="relating_user_id", nullable = false) Long relatingUserId;
- @Id private @Column(name="related_user_id", nullable = false) Long relatedUserId;
+ @Id  @Column(name="relating_user_id", nullable = false) private Long relatingUserId;
+ @Id  @Column(name="related_user_id", nullable = false)  private Long relatedUserId;
+ @Id  @Column(name="type", nullable = false) private String relationType;
  
- @Column(name="type", nullable = false)
- private String relationType;
  
  @OneToOne(fetch = FetchType.LAZY)
  @JoinColumn(name="relating_user_id", referencedColumnName="id", insertable = false, updatable = false)

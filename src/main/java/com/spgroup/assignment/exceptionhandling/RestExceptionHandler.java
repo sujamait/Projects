@@ -47,7 +47,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	     
 	    FriendManagementApplicationException apiError = 
 	      new FriendManagementApplicationException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
-	    return new ResponseEntity<Object>(apiError, headers, apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError,null);
 	}
 	
 	 /**
@@ -67,7 +67,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	     
 	    FriendManagementApplicationException apiError = 
 	      new FriendManagementApplicationException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
-	    return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError,  null);
 	}
 	
 	 /**
@@ -87,7 +87,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	 
 	    FriendManagementApplicationException apiError = 
 	      new FriendManagementApplicationException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
-	    return new ResponseEntity<Object>(apiError,apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError,null);
 	}
 	
 	  /**
@@ -103,7 +103,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	 
 	    FriendManagementApplicationException apiError = 
 	      new FriendManagementApplicationException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
-	    return new ResponseEntity<Object>(apiError, apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError, null);
 	}
 	
 	
@@ -120,21 +120,21 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	 
 	    FriendManagementApplicationException apiError = new FriendManagementApplicationException(HttpStatus.UNSUPPORTED_MEDIA_TYPE, 
 	      ex.getLocalizedMessage(), builder.substring(0, builder.length() - 2));
-	    return new ResponseEntity<Object>(apiError, apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError, null);
 	}
 	
 	@ExceptionHandler({FriendManagementApplicationException.class })
 	public ResponseEntity<Object> handleApplicationException(FriendManagementApplicationException ex, WebRequest request) {
 	    FriendManagementApplicationException apiError = new FriendManagementApplicationException(
 	      HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), "application error occurred");
-	    return new ResponseEntity<Object>(apiError, apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError, null);
 	}
 	
 	@ExceptionHandler({Exception.class })
 	public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
 	    FriendManagementApplicationException apiError = new FriendManagementApplicationException(
 	      HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), "error occurred");
-	    return new ResponseEntity<Object>(apiError, apiError.getStatus());
+	    return new ResponseEntity<Object>(apiError, null);
 	}
 
 }

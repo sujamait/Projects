@@ -1,0 +1,270 @@
+{
+	"id": "33e407de-a1e3-418b-359a-d55d3208578c",
+	"name": "Friends API",
+	"description": "Collection of Friends Management APIs",
+	"order": [
+		"b033eb51-0b3c-8002-4c99-d810f91b0654",
+		"206efab4-1e94-d6eb-8894-67ce71eedacb",
+		"91b98106-32d8-204a-e2d7-2d0b357a95c1",
+		"75d43b4e-b6c9-826b-a661-e974329007e1",
+		"2c014c48-b87c-6e20-f772-5be1ce350109",
+		"9992bdb5-950d-eda3-258d-0406724e6064",
+		"17bf6060-613c-cc89-0219-9b8a7456f2af",
+		"2a87efba-2f55-baeb-ecbf-3fc771e560e5"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1512744588837,
+	"owner": "3303020",
+	"public": false,
+	"requests": [
+		{
+			"id": "17bf6060-613c-cc89-0219-9b8a7456f2af",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/blockupdates/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/blockupdates/",
+			"description": "API to block updates from an Email Address.If want to subscribe again use subscribe API.",
+			"descriptionFormat": "html",
+			"time": 1512745931385,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"requestor\": \"andy@example.com\",\n  \"target\": \"john@example.com\"\n}\n\n"
+		},
+		{
+			"id": "206efab4-1e94-d6eb-8894-67ce71eedacb",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/connect/friends/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Connect Friends Invalid Email",
+			"description": "API to connect two email address as Friends",
+			"descriptionFormat": "html",
+			"time": 1512745184801,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n   \"friends\": [\n      \"InvalidEmailAddress@example\",\n      \"ValidEmailAdd@test.com\"\n   ]\n}"
+		},
+		{
+			"id": "2a87efba-2f55-baeb-ecbf-3fc771e560e5",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/receiveupdates/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/receiveupdates/",
+			"description": "API to retrieve all email addresses that can receive updates from an email address,\n\nEligibility for receiving updates from i.e. \"john@example.com\":\n\nhas not blocked updates from \"john@example.com\", and\nat least one of the following:\nhas a friend connection with \"john@example.com\"\nhas subscribed to updates from \"john@example.com\"\nhas been @mentioned in the update\nThe API should receive the following JSON request:\n\n{\n  \"sender\":  \"john@example.com\",\n  \"text\": \"Hello World! kate@example.com\"\n}\nThe API should return the following JSON response on success:\n\n{\n  \"success\": true\n  \"recipients\":\n    [\n      \"lisa@example.com\",\n      \"kate@example.com\"\n    ]\n}",
+			"descriptionFormat": "html",
+			"time": 1512746120227,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"sender\":  \"connectemail@test.com\",\n  \"text\": \"Hello World! kate@example.com  Hello!! sujamait@gmail.com\"\n}"
+		},
+		{
+			"id": "2c014c48-b87c-6e20-f772-5be1ce350109",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/common/friends/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/common/friends/",
+			"description": "API to retrieve common friends among two different Email Address.For Same email address use retrieve friend API.",
+			"descriptionFormat": "html",
+			"time": 1512745752859,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n   \"friends\": [\n     \n      \"connectemail@test.com\",\n      \"connectemailadd@test.com\"\n   ]\n}\n\n\n"
+		},
+		{
+			"id": "75d43b4e-b6c9-826b-a661-e974329007e1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/connect/friends/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Connect Friends Email",
+			"description": "API to connect two email address as Friends",
+			"descriptionFormat": "html",
+			"time": 1512745594933,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n   \"friends\": [\n      \"emailtestadd@example.com\",\n      \"connectemail@test.com\"\n   ]\n}"
+		},
+		{
+			"id": "91b98106-32d8-204a-e2d7-2d0b357a95c1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/retrieve/friends/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/retrieve/friends/ ",
+			"description": "API to Retrieve Friends for an email Address",
+			"descriptionFormat": "html",
+			"time": 1512745457003,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"email\": \"emailtest@example.com\"\n}"
+		},
+		{
+			"id": "9992bdb5-950d-eda3-258d-0406724e6064",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/subscribe/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/subscribe/",
+			"description": "API to subscribe to an email Address",
+			"descriptionFormat": "html",
+			"time": 1512745823361,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "\n{\n  \"requestor\": \"lisa@example.com\",\n  \"target\": \"john@example.com\"\n}\n\n\n"
+		},
+		{
+			"id": "b033eb51-0b3c-8002-4c99-d810f91b0654",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/connect/friends/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "33e407de-a1e3-418b-359a-d55d3208578c",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Connect Friends",
+			"description": "API to connect two email address as Friends",
+			"descriptionFormat": "html",
+			"time": 1512744909739,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n   \"friends\": [\n      \"EmailTestAdd@example.com\",\n      \"ConnectEmailAdd@test.com\"\n   ]\n}"
+		}
+	]
+}

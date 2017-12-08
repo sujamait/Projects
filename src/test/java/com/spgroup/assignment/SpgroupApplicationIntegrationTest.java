@@ -45,11 +45,38 @@ private UsersRelationshipRepository usersRelationshiopRepository;
 ObjectMapper objectMapper;
 
 @Test
+public void BadRequestShouldReturnMessageFromService() throws Exception {
+	
+	FriendRequest freq = new FriendRequest();
+	//Same Email Address
+	freq.setFriends(Arrays.asList("Test@gmail.com","Test@gmail.com"));
+	
+	
+	 this.mockMvc.perform(put("/connect/friends/")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(freq)))
+            .andExpect(status().isBadRequest());
+}
+
+@Test
+public void RequestOkShouldReturnMessageFromService() throws Exception {
+	
+	FriendRequest freq = new FriendRequest();
+	//Same Email Address
+	freq.setFriends(Arrays.asList("Test@gmail.com","Test@spgroup.com"));
+	
+	
+	 this.mockMvc.perform(put("/connect/friends/")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(freq)))
+            .andExpect(status().isOk());
+}
+
+@Test
 public void SuccessTrueShouldReturnMessageFromService() throws Exception {
 	
 	FriendRequest freq = new FriendRequest();
-	freq.setFriends(Arrays.asList("Test@gmail.com","Test@spgroup.com"));
-	
+	freq.setFriends(Arrays.asList("Testing@gmail.com","Test@spgroup.com"));
 	
 	 this.mockMvc.perform(put("/connect/friends/")
             .contentType(MediaType.APPLICATION_JSON)

@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = EmailCollectionValidator.class)
 @Documented
 public @interface EmailCollection {
-    String message() default "Invalid Email";
+    String message() default "Invalid/Duplicate Email";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
