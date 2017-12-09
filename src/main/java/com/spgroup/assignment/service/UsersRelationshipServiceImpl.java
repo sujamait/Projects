@@ -172,23 +172,35 @@ public class UsersRelationshipServiceImpl implements UsersRelationshipService {
 
 	@Override
 	public Set<String> receive(String sender, String text) throws FriendManagementApplicationException {
+		
 		Set<String> recipientsList = new HashSet<String>();
+		Set<String> textRecipientsList = null;
+		if(text!=null){
+			Matcher m = Pattern.compile(emailRegEx).matcher(text);
+			textRecipientsList =  new HashSet<String>();
+		    while (m.find()) {
+		    	textRecipientsList.add(m.group().toString());
+		    }
+		}
+		
 		Users user=usersRepository.findUserByEmailId(sender.toLowerCase());
 		
 		if(user!=null){
 			List<UsersRelationship> usersRelationshipList = usersRelationshiopRepository.
-					findByRelatedUserIdAndRelationTypeNot(user.getUserId(),CommonConstants.BLOCK);
+					findByRelatedUserId(user.getUserId());
 			if(usersRelationshipList!=null)
 			for(UsersRelationship usersRelationship:usersRelationshipList){
-				recipientsList.add(usersRelationship.getRelatingUser().getEmailId());
+				if(usersRelationship.getRelationType().equals(CommonConstants.BLOCK)){
+					if(textRecipientsList !=null && textRecipientsList.contains(usersRelationship.getRelatingUser().getEmailId())){
+						textRecipientsList.remove(usersRelationship.getRelatingUser().getEmailId());
+					}
+					continue;
+				}
+				
+			    recipientsList.add(usersRelationship.getRelatingUser().getEmailId());
 		    }
 		}	
-		if(text!=null){
-			Matcher m = Pattern.compile(emailRegEx).matcher(text);
-		    while (m.find()) {
-		    	recipientsList.add(m.group().toString());
-		    }
-		}
+		recipientsList.addAll(textRecipientsList);
 		return recipientsList;
 	}
 

@@ -11,5 +11,5 @@ public interface UsersRelationshipRepository extends CrudRepository<UsersRelatio
 	List<UsersRelationship> findByRelatingUserIdOrRelatedUserIdAndRelationType(Long relatingUserId, Long relatedUserId,String relationType);
 	List<UsersRelationship> findByUserId(Long relatingUserId,Long relatedUserId,String relationType);
 	UsersRelationship findSubscriberByUserId(Long relatingUserId,Long relatedUserId,String relationType);
-	List<UsersRelationship> findByRelatedUserIdAndRelationTypeNot(Long userId, String relationType);
+	List<UsersRelationship> findByRelatedUserId(Long userId);
 }

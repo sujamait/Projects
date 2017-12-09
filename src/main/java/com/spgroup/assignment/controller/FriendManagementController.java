@@ -1,16 +1,14 @@
 package com.spgroup.assignment.controller;
 
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.spgroup.assignment.constants.CommonConstants;
 import com.spgroup.assignment.dto.FriendListRequest;
 import com.spgroup.assignment.dto.FriendRequest;
 import com.spgroup.assignment.dto.ReceiveUpdateRequest;
@@ -41,7 +39,7 @@ public class FriendManagementController {
 	public Response ConnectFriends(@Valid @RequestBody FriendRequest rq) throws FriendManagementApplicationException{
 		logger.info("Connect Friends");
 		Map<String,Response> reponseMap =  friendManagementService.connectFriends(rq.getFriends());
-		return reponseMap == null ? null:reponseMap.get("response");
+		return reponseMap == null ? null:reponseMap.get(CommonConstants.RESPONSE);
 	}
 	
 	
@@ -52,7 +50,7 @@ public class FriendManagementController {
 	@PostMapping(path="/retrieve/friends/")
 	public Response ConnectFriends(@Valid @RequestBody FriendListRequest rq) throws FriendManagementApplicationException{
 		Map<String,Response> reponseMap = friendManagementService.retrieveFriends(rq.getEmail());
-		return reponseMap == null ? null:reponseMap.get("response");
+		return reponseMap == null ? null:reponseMap.get(CommonConstants.RESPONSE);
 	}
 	
 	
@@ -63,7 +61,7 @@ public class FriendManagementController {
 	@PostMapping(path="/common/friends/")
 	public Response CommonFriends(@Valid @RequestBody FriendRequest rq) throws FriendManagementApplicationException{
 		Map<String,Response> reponseMap = friendManagementService.commonFriends(rq.getFriends());
-		return reponseMap == null ? null:reponseMap.get("response");
+		return reponseMap == null ? null:reponseMap.get(CommonConstants.RESPONSE);
 	}
 	
 	
@@ -74,7 +72,7 @@ public class FriendManagementController {
 	@PostMapping(path="/subscribe/")
 	public Response SubscribeToUpdates(@Valid @RequestBody SubscribeBlockRequest rq) throws FriendManagementApplicationException{
 		Map<String,Response> reponseMap =  friendManagementService.subscribe(rq.getRequestor(),rq.getTarget());
-		return reponseMap == null ? null:reponseMap.get("response");
+		return reponseMap == null ? null:reponseMap.get(CommonConstants.RESPONSE);
 	}
 	
 	/*
@@ -84,7 +82,7 @@ public class FriendManagementController {
 	@PostMapping(path="/blockupdates/")
 	public Response BlockUpdates(@Valid @RequestBody SubscribeBlockRequest rq) throws FriendManagementApplicationException{
 		Map<String,Response> reponseMap =  friendManagementService.block(rq.getRequestor(),rq.getTarget());
-		return reponseMap == null ? null:reponseMap.get("response");
+		return reponseMap == null ? null:reponseMap.get(CommonConstants.RESPONSE);
 	}
 	
 	/*
@@ -94,7 +92,7 @@ public class FriendManagementController {
 	@PostMapping(path="/receiveupdates/")
 	public Response receiveUpdates(@Valid @RequestBody ReceiveUpdateRequest rq) throws FriendManagementApplicationException{
 		Map<String,Response> reponseMap =  friendManagementService.receive(rq.getSender(),rq.getText());
-		return reponseMap == null ? null:reponseMap.get("response");
+		return reponseMap == null ? null:reponseMap.get(CommonConstants.RESPONSE);
 	}
 	
 	

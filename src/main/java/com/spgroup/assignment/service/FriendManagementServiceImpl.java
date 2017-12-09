@@ -1,16 +1,15 @@
 package com.spgroup.assignment.service;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.spgroup.assignment.constants.CommonConstants;
 import com.spgroup.assignment.dto.Response;
 import com.spgroup.assignment.exceptionhandling.FriendManagementApplicationException;
 
@@ -38,7 +37,7 @@ public class FriendManagementServiceImpl implements FriendManagementService{
 	 Map<String,Response> respMap = new HashMap<String,Response>();
 	 Response objResponse = new Response();
 	 objResponse.setSuccess(usersRelationshipService.connectFriends(usersService.add(EmailIds)));
-	 respMap.put("response",objResponse);
+	 respMap.put(CommonConstants.RESPONSE,objResponse);
 	 return respMap;
  }
 
@@ -54,7 +53,7 @@ public class FriendManagementServiceImpl implements FriendManagementService{
 	 objResponse.setSuccess(true);
 	 objResponse.setCount(String.valueOf(allFriendsList.size()));
 	 objResponse.setFriends(new ArrayList<String>(allFriendsList));
-	 respMap.put("response",objResponse);
+	 respMap.put(CommonConstants.RESPONSE,objResponse);
 	 return respMap;
  }
 
@@ -72,7 +71,7 @@ public Map<String, Response> commonFriends(List<String> EmailIds) throws FriendM
 	objResponse.setSuccess(true);
 	objResponse.setCount(String.valueOf(allFriendsFirstUser.size()));
 	objResponse.setFriends(new ArrayList<String>(allFriendsFirstUser));
-	respMap.put("response",objResponse);
+	respMap.put(CommonConstants.RESPONSE,objResponse);
 	return respMap;
 }
 
@@ -84,7 +83,7 @@ public Map<String, Response> subscribe(String requestor, String target) throws F
 	 orderedEmailIds.add(requestor);
 	 orderedEmailIds.add(target);
 	 objResponse.setSuccess(usersRelationshipService.subscribe(usersService.add(orderedEmailIds)));
-	 respMap.put("response",objResponse);
+	 respMap.put(CommonConstants.RESPONSE,objResponse);
 	 return respMap;
 }
 
@@ -97,7 +96,7 @@ public Map<String, Response> block(String requestor, String target) throws Frien
 	 orderedEmailIds.add(requestor);
 	 orderedEmailIds.add(target);
 	 objResponse.setSuccess(usersRelationshipService.block(usersService.add(orderedEmailIds)));
-	 respMap.put("response",objResponse);
+	 respMap.put(CommonConstants.RESPONSE,objResponse);
 	 return respMap;
 }
 
@@ -108,7 +107,7 @@ public Map<String, Response> receive(String sender, String text) throws FriendMa
 	 Response objResponse = new Response();
 	 objResponse.setRecipients(new ArrayList<String>(usersRelationshipService.receive(sender,text)));
 	 objResponse.setSuccess(true);
-	 respMap.put("response",objResponse);
+	 respMap.put(CommonConstants.RESPONSE,objResponse);
 	 return respMap;
 }
  
